@@ -30,7 +30,6 @@ const EditPrompt = () => {
   const updatePrompt = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    <Suspense></Suspense>;
     if (!promptId) return alert("Prompt ID nor found");
     try {
       const response = await fetch(`/api/prompt/${promptId}`, {
@@ -51,13 +50,15 @@ const EditPrompt = () => {
     }
   };
   return (
-    <Form
-      type="Edit"
-      post={post}
-      setPost={setPost}
-      submitting={submitting}
-      handleSubmit={updatePrompt}
-    />
+    <Suspense>
+      <Form
+        type="Edit"
+        post={post}
+        setPost={setPost}
+        submitting={submitting}
+        handleSubmit={updatePrompt}
+      />
+    </Suspense>
   );
 };
 
